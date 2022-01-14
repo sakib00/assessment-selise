@@ -1,9 +1,10 @@
 import './App.css';
+import { ListItemComponent } from './components/ListItemComponent';
 
 function App() {
   return (
-    <div className='App text-3xl font-bold underline'>
-      <h1>Hello world!</h1>
+    <div className='App bg-primary min-h-screen'>
+      <ListItemComponent />
     </div>
   );
 }
