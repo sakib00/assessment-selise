@@ -13,7 +13,7 @@ export const AuthorList = () => {
   const [currentAuthor, setCurrentAuthor] = useState({});
 
   const getAuthorRequest = async () => {
-    const url = `//api.quotable.io/authors?limit=12&skip=${skipValue}`;
+    const url = `https://api.quotable.io/authors?limit=12&skip=${skipValue}`;
     setLoading(true);
 
     const response = await fetch(url);
@@ -57,8 +57,8 @@ export const AuthorList = () => {
           <div className='list grid grid-cols-4 gap-6'>
             {authors.length !== 0 ? (
               authors.map((author) => (
-                <div onClick={() => setCurrentAuthor(author)}>
-                  <ListItemComponent key={author._id} author={author} />
+                <div key={author._id} onClick={() => setCurrentAuthor(author)}>
+                  <ListItemComponent author={author} />
                 </div>
               ))
             ) : (
