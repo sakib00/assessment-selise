@@ -24,7 +24,7 @@ export const Loader = ({ isLoading }) => {
           initial='initial'
           exit='exit'
         >
-          <div class='la-ball-scale-ripple-multiple la-3x'>
+          <div className='la-ball-scale-ripple-multiple la-3x'>
             <div></div>
             <div></div>
             <div></div>

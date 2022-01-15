@@ -7,7 +7,7 @@ export const ListItemComponent = ({ author }) => {
 
   useEffect(() => {
     let found = favorites.find((item) => item._id === author._id);
-    if (found !== undefined) {
+    if (found) {
       setIsFavorited(true);
     } else {
       setIsFavorited(false);

@@ -18,6 +18,7 @@ export const AuthorList = () => {
 
     const response = await fetch(url);
     const responseJson = await response.json();
+    console.log(responseJson.results);
 
     if (responseJson.results) {
       setAuthors(responseJson.results);
@@ -55,7 +56,7 @@ export const AuthorList = () => {
         </h1>
         <div className='body flex'>
           <div className='list grid grid-cols-4 gap-6'>
-            {authors.length !== 0 ? (
+            {authors.length > 0 ? (
               authors.map((author) => (
                 <div key={author._id} onClick={() => setCurrentAuthor(author)}>
                   <ListItemComponent author={author} />
