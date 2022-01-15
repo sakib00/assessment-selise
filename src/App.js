@@ -29,10 +29,10 @@ function App() {
       <div className='w-full  py-10'>
         <FavoritesContext.Provider value={value}>
           <Routes>
-            <Route path='authors' element={<AuthorList />} />
+            <Route path='/authors' element={<AuthorList />} />
             <Route index element={<Welcome />} />
-            <Route path='favoritelist' element={<FavoriteList />} />
-            <Route path='*' element={<Error404 />} />
+            <Route path='/favoritelist' element={<FavoriteList />} />
+            <Route path='/*' element={<Error404 />} />
           </Routes>
         </FavoritesContext.Provider>
       </div>
