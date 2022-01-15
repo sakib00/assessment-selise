@@ -1,34 +1,49 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import FavoritesContext from '../state/FavoriteContext';
 
 export const ListItemComponent = ({ author }) => {
+  const { favorites, setFavorites } = useContext(FavoritesContext);
+  const [isFavorited, setIsFavorited] = useState(false);
+
+  useEffect(() => {
+    let found = favorites.find((item) => item._id === author._id);
+    if (found) {
+      setIsFavorited(true);
+    } else {
+      setIsFavorited(false);
+    }
+  }, []);
+
+  const toggleFavorite = (e) => {
+    e.stopPropagation();
+    if (isFavorited) {
+      let arr = favorites.filter((item) => item._id !== author._id);
+      setFavorites(arr);
+      setIsFavorited(false);
+    } else {
+      setFavorites([...favorites, author]);
+      setIsFavorited(true);
+    }
+  };
+
   return (
-    <div className='px-8 py-4 border rounded-lg  bg-white border-gray-100 shadow-lg'>
-      <div className='my-4 space-y-4'>
-        <div className='flex items-center justify-between pb-2 border-b border-gray-200 space-x-3'>
+    <div className='px-10 py-10 border rounded-lg  bg-white border-gray-100 shadow-lg'>
+      <div className='space-y-4'>
+        <div className='flex items-center justify-between pb-4 border-b border-gray-200 space-x-3'>
           <div>
             <h3 className='text-lg font-bold'>{author.name}</h3>
           </div>
-          <div className=''>
-            <div className='border rounded-full p-2 border-gray-300 text-secondary-dark  hover:bg-secondary-dark hover:text-white cursor-pointer'>
-              {/* Outline */}
-              {/* <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-4 w-4 '
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={2}
-              d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'
-            />
-          </svg> */}
-              {/* Solid */}
+          <div className='' onClick={toggleFavorite}>
+            <div
+              className={`cursor-pointer shadow-md rounded-full p-2 transition duration-200 ${
+                isFavorited
+                  ? 'text-white bg-orange-500 hover:bg-orange-400'
+                  : 'text-orange-500  hover:bg-gray-200 '
+              } `}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                className='h-4 w-4 '
+                className='h-5 w-5 '
                 viewBox='0 0 20 20'
                 fill='currentColor'
               >
@@ -44,7 +59,7 @@ export const ListItemComponent = ({ author }) => {
         <div className='flex items-center space-x-2'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
-            className='h-4 w-4 text-gray-400'
+            className='h-5 w-5 text-gray-400'
             fill='none'
             viewBox='0 0 24 24'
             stroke='currentColor'
@@ -57,13 +72,13 @@ export const ListItemComponent = ({ author }) => {
             />
           </svg>
           <a
-            href='www.google.com'
-            className='text-sm  text-blue-500 hover:text-blue-800 visited:text-purple-600'
+            href={author.link}
+            className='text-sm  text-sky-500 hover:text-sky-800 visited:text-purple-400 italic'
           >
-            {author.link}
+            Wikipedia
           </a>
         </div>
-        <p className='text-sm '>{author.bio}</p>
+        <p className='text-sm line-clamp-2'>{author.bio}</p>
       </div>
     </div>
   );
