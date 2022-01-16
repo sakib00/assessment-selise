@@ -18,7 +18,7 @@ export const AuthorList = () => {
 
     const response = await fetch(url);
     const responseJson = await response.json();
-    console.log(responseJson.results);
+    
 
     if (responseJson.results) {
       setAuthors(responseJson.results);

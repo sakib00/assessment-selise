@@ -14,7 +14,11 @@ function App() {
 
   useEffect(() => {
     let data = JSON.parse(window.localStorage.getItem('favorites'));
-    setFavorites(data);
+    if (data) {
+      setFavorites(data);
+    } else {
+      setFavorites([]);
+    }
   }, []);
 
   useEffect(() => {
