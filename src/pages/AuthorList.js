@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { ListItemComponent } from '../components/ListItemComponent';
-import { Loader } from '../components/loader/Loader';
+import { Loader } from '../components/Loader';
 import { Modal } from '../components/Modal';
 import { Pagination } from '../components/Pagination';
 

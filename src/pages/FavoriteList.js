@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ListItemComponent } from '../components/ListItemComponent';
-import { Loader } from '../components/loader/Loader';
+import { Loader } from '../components/Loader';
 import { Modal } from '../components/Modal';
 import FavoritesContext from '../state/FavoriteContext';
 
